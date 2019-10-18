@@ -7,10 +7,8 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author EkKo
@@ -19,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
  * @description: TODO
  * @date 2019/10/17/9:26
  */
-@RestController
-@Api("LoginController相关api")
+@Controller
+@RequestMapping("/login")
+@Api("LoginController")
 public class LoginController {
 
     @Autowired
@@ -30,18 +29,37 @@ public class LoginController {
             @ApiImplicitParam(paramType = "header", name = "loginName", dataType = "String", required = true, value = "用户的姓名"),
             @ApiImplicitParam(paramType = "query", name = "passWord", dataType = "String", required = true, value = "用户的密码")
     })*/
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginNameAndPassWordByLogin(@RequestHeader("loginName") String loginName, @RequestHeader("passWord") String passWord) {
+
+
+    @PostMapping("/login")
+    /*public String loginNameAndPassWordByLogin(@RequestHeader("loginName") String loginName, @RequestHeader("passWord") String passWord) {*/
+    public String loginNameAndPassWordByLogin(String loginName, String passWord) {
+        //接收传入的登录账号和密码
         User user = loginService.loginNameAndPassWordByLogin(loginName, passWord);
-        return user.getUserName() + "" + user.getGander();
+        //判断用户密码是否正确 返回主页或登录页面
+        if (user == null) {
+            return "/index";
+        }
+        return "/home";
     }
 
-    /*@RequestMapping(value = "/test", method = RequestMethod.POST)
+  /*  @PostMapping("/login12")
+    public String loginNameAndPassWordByLogin() {
+        System.out.println("134t");
+        return "/Home";
+    }*/
+
+    /**
+     * 登录页面
+     *
+     * @return 返回到登录的主页面
+     */
+    @GetMapping("/index")
     public String test() {
-        return "123";
+        return "/index";
     }
 
-    @RequestMapping(value = "/test1", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/test1", method = RequestMethod.GET)
     public String test1(@RequestHeader("a") String a, @RequestHeader("b") String b) {
         System.out.println(a);
         System.out.println(b);

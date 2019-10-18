@@ -1,7 +1,6 @@
 server:   #端口
   servlet:
-    context-path:
-  port: 8080
+    port: 8080
 
 id: 2     #测试用
 userName: EkKo
@@ -14,6 +13,10 @@ spring:
     password: 401120719
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/gezhi?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8
+  thymeleaf:
+    prefix: classpath:/templates/
+
 mybatis:
   mapper-locations: classpath:sqlmap/LoginMapper.xml
   type-aliases-package: com.gezhi.demo.pojo.User
+

@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/ui/css/index.css"/>
+</head>
+<style type="text/css">
+    .logo {
+        width: 200px;
+        height: 120px;
+        float: left;
+    }
+</style>
+<body>
+
+<img class="bgone" src="/ui/img/1.jpg"/>
+<img class="pic" src="/ui/img/a.png"/>
+
+<div class="table">
+    <div class="wel">GeZhiPostBar</div>
+    <form action="/login/login" name="/login" method="post">
+        <div class="user">
+            <div id="user" style=""><img src="/ui/img/yhm.png" width="30px" height="30px"/></div>
+            <input type="text" name="loginName" placeholder="用户名"/>
+        </div>
+        <div class="password">
+            <div id="password"><img src="/ui/img/mm.png" width="30px" height="30px"/></div>
+            <input type="passWord" name="passWord" placeholder="*****"/>
+        </div>
+        <input class="btn" type="submit" name="Login" value="登录"/>
+        <!--        <input class="btn"  name="Login" value="游客"/>-->
+    </form>
+</div>
+
+</body>
+</html>
